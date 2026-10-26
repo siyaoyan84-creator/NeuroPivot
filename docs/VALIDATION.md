@@ -1,4 +1,4 @@
-# Validation record / 实际验证记录
+# Validation record
 
 Updated2026-10-23. This record supersedes the previous missing-torch/skipped-test status. No model/data download, server connection, full training, push or code publication occurred. Only authorized CPU/core software dependencies were installed in a new environment outside the project; original source and private evidence were not edited.
 
@@ -85,7 +85,7 @@ Only bounded new-entry syntax/help, actual protocol guards and package contents 
 
 Python syntax, CLI help and fold-role guards passed as recorded above. Local Windows has no Bash: run `bash -n scripts/server_release_check.sh` on the server first; shell execution remains unverified locally. No additional core training or GPU checks were run. The archive excludes private evidence, assets, environments and reports. Archive members and extracted CLI help were checked.
 
-## Server minimal real check / 服务器最小真实检查 (2026-10-24)
+## Server minimal real check (2026-10-24)
 
 The complete supplied report was parsed and its internal checks agree with PASS. This is an existing server environment, not a clean installation or training qualification.
 
@@ -95,10 +95,12 @@ The complete supplied report was parsed and its internal checks agree with PASS.
 - In-memory parameter values unchanged=true; existing supplied assets size/mtime_ns/inode unchanged=true (access time excluded). Optimizer steps0; no statistics fitted and no checkpoint selection. Saved66D statistics restored.
 - Passed environment: Python3.10.21, torch2.4.0+cu121, NVIDIA L20; numpy1.23.5, PyYAML6.0.3, transformers4.49.0, peft0.13.2, decord0.6.0, omegaconf2.3.0, einops0.8.0, timm1.0.15, torchaudio2.4.0+cu121, torchvision0.19.0+cu121.
 
-通过范围仅为真实初始化、cached-AV候选评分与训练侧残差梯度链路；未验证原始媒体编码、完整训练、task-token梯度或论文指标复现。JSON中的旧preflight说明字符串不覆盖本次真实加载诊断；YAML frozen_* 标志也不替代实测梯度状态。
+The passed scope is real initialization, cached-AV candidate scoring and training-side residual gradients. Raw media encoding, full training, task-token gradients and paper metrics were not verified. The old preflight description string does not override real loading diagnostics; YAML frozen_* flags do not replace measured gradient states.
 
 Six historical provenance gaps remain: residual fitted anchor; task checkpoint/checkpoint, base_checkpoint and av_cache; residual physiology_cache and base_checkpoint. Bridge summaries establish folds1–4 anchor02 (24jobs), fold5 anchor01 (6jobs), not the final paper result lineage. No missing historical fields were reconstructed. Original reports, logs and paths remain outside this public tree.
 
-本轮仅合并集合/Path序列化、先序列化后独占创建文件与shell LF；小型回归命令：`python tests/test_report_serialization.py`。没有重新加载7B、重复核心测试或运行训练。
+Only set/Path report serialization, serialize-before-create behavior and shell LF handling were changed. The small regression command was python tests/test_report_serialization.py. No 7B reload, repeated core suite or training was performed.
 
 Local merge verification (2026-10-24): `python -B tests/test_report_serialization.py` passed 1 test in0.037s. Checked all scripts/*.sh for absence of CR bytes, .gitattributes LF rule, public source for private path/asset markers, and presence of patch/licenses. No model initialization or previously passed core suite was repeated.
+
+English-only publication update: translated documentation and provenance messages; renamed LICENSE_ZH.md to LICENSE_SUMMARY.md. The patch omits unchanged Chinese context and requires git apply --unidiff-zero. Reverse-old/apply-new validation on all four actual targets produced identical source. No model or training was run.

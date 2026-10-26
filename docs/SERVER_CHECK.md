@@ -1,24 +1,24 @@
 > Current status (2026-10-24): server minimal real initialization, cached-AV scoring and training-side residual backward passed; task-token gradient was disabled. Earlier unexecuted statements below describe the pre-handoff state. See VALIDATION.md for the current verified scope; six historical provenance gaps remain.
 
-# 服务器最小真实检查：一次初始化，不训练
+# Minimal real server check: one initialization, no training
 
-本轮到此结束代码整理。此包用于用户自行上传已有服务器，既不连接服务器，也不安装包、下载模型、覆盖原项目、更新权重或重跑完整实验。
+This handoff procedure uses existing server assets. It does not install packages, download models, overwrite the original project, update weights or run full experiments.
 
-## 包内容与用途
+## Package and modes
 
-本地交付：`server_delivery/NeuroPivot-server-check-20261023.tar.gz` 及同名 `.sha256`。包内根目录为 NeuroPivot-public，包含当前源码、配置、四文件 AffectGPT patch、许可、必要脚本和说明；不含虚拟环境、外部源码树、数据、权重、缓存、日志、release_checks或私有证据。无需覆盖服务器原 NeuroPivot/AffectGPT 项目。
+The historical handoff archive contains source, configuration, the four-file AffectGPT patch, licenses and scripts. It excludes environments, external source trees, data, weights, caches, logs, release_checks and private evidence. The historical archive is not included in this current source release.
 
-- `scripts/check_affectgpt_real.py --mode preflight`：只读文件/配置/安全checkpoint元数据和指定trial；不构造任何模型。
-- `--mode frozen`：1–2个trial的冻结五类候选NLL，可用outer-test；全程inference_mode，不拟合统计量、不选择checkpoint、不求梯度。
-- `--mode gradient`：一个训练侧trial的cross-fitted physiology；临时模型/适配器状态下backward，无optimizer或step。复用已训练权重只验证梯度链路，不复现训练过程。
-- `--mode both`：只初始化一次真实模型，分别执行上述冻结评分与训练侧梯度；`--check-task-gradient`才额外检查同一训练侧trial的task-token梯度。
-- `scripts/inspect_release_provenance.py`：独立只读来源检查；不从目录名、硬编码metadata或bridge summary推断论文最终链路。
+- scripts/check_affectgpt_real.py --mode preflight reads files, configuration, safe checkpoint metadata and selected trials; it constructs no model.
+- --mode frozen scores 1-2 trials over five candidates under inference_mode. Outer-test subjects are allowed; no statistics fitting, checkpoint selection or gradients.
+- --mode gradient uses one training-side trial with cross-fitted physiology. Backward uses temporary model/adapter state, without an optimizer or step. Existing trained weights validate the gradient chain, not training reproduction.
+- --mode both initializes one real model and runs frozen scoring and training-side residual gradients. --check-task-gradient optionally checks the same training trial task-token gradient.
+- scripts/inspect_release_provenance.py reads recorded sources without inferring final paper lineage from directory names, hard-coded metadata or bridge summaries.
 
-检查器对主模型的LoRA/投影/融合缺项和多余键失败关闭。基础权重的真实from_pretrained加载诊断逐项记录；除可重建position_ids外的缺失/多余/形状问题停止检查。AffectGPT部分checkpoint中缺失、但已由显式基础模型目录加载的冻结主干，与允许缺失且最终路线未使用的新增2D physio_projector分别报告，不混为“全部加载成功”。task/residual关键字段、类别、权重形状和分组必须存在；旧资产未记录的来源列为未知，不伪造来源。
+Critical LoRA/projection/fusion missing keys and unexpected keys fail the check. Actual foundation from_pretrained diagnostics are recorded; only regenerable position_ids may be missing. Externally loaded frozen foundation keys and allowed unused new physio_projector keys are classified separately. Task/residual key fields, labels, shapes and grouping are required. Historical sources not recorded in old assets remain unknown.
 
-## 1. 上传后在Home独立解压并激活已有环境
+## 1. Extract under Home and activate the existing environment
 
-将tar.gz和sha256文件上传到Home。以下命令可直接复制；不安装或升级包：
+Upload the historical handoff archive and its checksum to Home before these commands. Do not install or upgrade packages.
 
 ```bash
 ARCHIVE="$HOME/NeuroPivot-server-check-20261023.tar.gz"
@@ -33,11 +33,11 @@ export PYTHONPATH="$PWD/src"
 export PYTHONDONTWRITEBYTECODE=1
 ```
 
-如果conda不在PATH，使用实际安装的conda base目录来source其etc/profile.d/conda.sh；不要猜测服务器安装路径。不要运行pip install。脚本的环境检查会报告版本、缺失依赖与实际可见GPU，缺依赖即停，不擅自修复环境。没有默认物理GPU编号：沿用调度器的CUDA_VISIBLE_DEVICES；必要时用户自行指定DEVICE，例如由调度器分配的CUDA设备标识。不要照抄他人的物理卡号。
+If conda is not in PATH, source conda.sh from the actual installation. Do not run pip install. The launcher reports versions, missing dependencies and visible GPUs, and stops if dependencies are missing. It inherits scheduler CUDA_VISIBLE_DEVICES without selecting a physical GPU. Set DEVICE only to an allocated logical device.
 
-## 2. 用户只需填写7个已有资产路径
+## 2. Set seven existing asset paths
 
-所有路径填写真实绝对路径；下列是参数模板，不声称这些路径已存在。MODEL_ROOT是三个基础模型子目录的父目录；AFFECTGPT_ROOT直接包含my_affectgpt。
+Use actual absolute paths. These are templates, not claimed existing files. MODEL_ROOT contains the three foundation model directories; AFFECTGPT_ROOT directly contains my_affectgpt.
 
 ```bash
 export AFFECTGPT_ROOT="/actual/modified/AffectGPT"
@@ -54,9 +54,9 @@ export TRUSTED_CHECKPOINTS=1
 export CHECK_TASK_GRADIENT=0
 ```
 
-原始REFED/EAV路径不需要再填写：本次是已缓存真实trial的检查，不执行原始媒体编码或EEG预处理。默认选择由实际分组代码派生：fold1冻结subject14、trial0和1；梯度subject03、trial0，其teacher必须为inner4/job14，且nested_train/val不得包含03。其他fold同样从配置推导，不按被试编号猜身份。REFED anchor编号和EAV编号属于不同命名空间。
+REFED/EAV source paths are not required for this cached-trial check; raw media encoding and EEG preprocessing are not run. Subjects derive from actual folds: fold1 frozen subject14 trials0/1 and gradient subject03 trial0. Its teacher is inner4/job14; subject03 must not occur in nested_train/val. Other folds derive subjects from the same protocol. REFED and EAV IDs are separate namespaces.
 
-不确定路径时，先填写实际项目/运行根目录，再限定范围查找；不要自动取第一条结果：
+To locate unknown paths, set the actual project/run root and perform only scoped searches. Do not automatically choose the first result.
 
 ```bash
 export PROJECT_ROOT="/actual/existing/neuro-affect-pivot"
@@ -69,9 +69,9 @@ find "$RUN_ROOT/checkpoints/gate4" -maxdepth 5 -type f -name final.pt -path '*/v
 find "$RUN_ROOT/features/gate4" -maxdepth 2 -type f \( -name subject03.npz -o -name subject14.npz \) -print
 ```
 
-这些find只定位候选文件。由用户确认实际用于该折的主方法文件；检查器依据保存字段/分组校验，不能仅凭目录名确认。若运行根使用其他布局，相应更改find的起始目录；不需要下载runtime全树。
+These searches locate candidates only. Confirm the actual asset for the selected fold/subject and check saved fields and alignment. Adapt search roots to your directory layout; do not transfer the entire runtime tree.
 
-## 3. 先执行只读预检查，再执行最小真实检查
+## 3. Run read-only preflight before the minimal real check
 
 ```bash
 bash scripts/server_release_check.sh preflight
@@ -79,42 +79,42 @@ bash scripts/server_release_check.sh preflight
 bash scripts/server_release_check.sh real
 ```
 
-每次在解压目录的release_checks中新建唯一子目录，不覆盖旧报告。real模式只有一次真实模型初始化、两个冻结trial五类评分、一个训练侧trial的residual backward；默认不做task-token backward。DEVICE默认cuda表示用户当前设备，不是硬编码物理编号。可显式export DEVICE为已分配设备。
+Each run creates a unique release_checks subdirectory. Real mode performs one initialization, two frozen five-candidate trials and one training-side residual backward. Task-token backward is disabled by default. DEVICE defaults to the current CUDA device without hard-coding a physical GPU.
 
-直接CLI的用途是分开使用frozen/gradient或改trial；所有参数见：
+Use the direct CLI to separate frozen/gradient modes or select different trials:
 
 ```bash
 python scripts/check_affectgpt_real.py --help
 ```
 
-结果包括实际路径、有效配置、依赖/GPU、基础和部分checkpoint加载缺项/多余键、特殊token、形状/有限值、candidate NLL、可训练参数与冻结梯度、参数值版本及已有文件size/mtime/inode前后对比。读取会改变操作系统访问时间，因此不比较atime；这不是所有资产的密码学证明。HF/Torch/CUDA临时缓存也定向到新release_checks目录。任何错误在报告中保留并非零退出；没有生产替身或不安全pickle fallback。
+Reports include loaded paths, configuration, dependencies/GPU, missing/unexpected keys, special tokens, shapes, finite values, candidate NLL, trainable/frozen gradients, parameter versions and asset size/mtime/inode comparisons. Access time is excluded. This is not a cryptographic proof of all assets. HF/Torch/CUDA caches are redirected to the new check directory. Errors remain in the report and exit nonzero; no production doubles or unsafe pickle fallback.
 
-报告包含服务器私有绝对路径，留在服务器检查目录；不要直接发布这些输出或把它们打进源码包。
+Reports contain private server paths. Keep them on the server; do not publish or include them in a source archive.
 
-## 4. 只读核对论文最终链路
+## 4. Inspect final paper lineage read-only
 
-桥接证据仅确认：fold1–4的24个job为REFED anchor02，fold5的6个job为anchor01。它不证明最终pivot/task/residual/evaluation使用了这些产物。旧fold5缓存曾硬编码anchor02，必须与真实权重/生成记录比对，不能据此覆盖或修改已有缓存。
+Bridge summaries confirm anchor02 for fold1-4 (24jobs) and anchor01 for fold5 (6jobs). This does not prove the final pivot/task/residual/evaluation consumed these outputs. Old fold5 cache metadata hard-coded anchor02; compare real weights/generation records without overwriting existing caches.
 
-先定位确实用于论文的最终JSON/NPZ，不自动选文件。可用下列限定搜索：
+Identify the actual final evaluation JSON/NPZ manually, using scoped searches:
 
 ```bash
 find "$RUN_ROOT/predictions" "$RUN_ROOT/audits/gate4" -maxdepth 3 -type f \( -name '*.json' -o -name '*.npz' \) -print
 rg -l 'teacher_checkpoint|physiology_cache|task_checkpoint|base_checkpoint|provenance' "$RUN_ROOT/audits/gate4" "$RUN_ROOT/checkpoints/gate4" -g '*.json'
 ```
 
-不存在的起始目录请删除或换成实际目录，不创建假路径。填写真实评估文件后运行：
+Remove nonexistent search roots or replace them with actual paths. Set the real evaluation file before running:
 
 ```bash
 export FINAL_EVAL="/actual/final-evaluation.json-or-npz"
 python scripts/inspect_release_provenance.py --fold 1 --anchor 2 --pivot "$PIVOT_ROOT/subject03.npz" "$PIVOT_ROOT/subject14.npz" --checkpoint "$TASK_CKPT" "$RESIDUAL_CKPT" --evaluation "$FINAL_EVAL" --trusted-checkpoints --output-dir "$PWD/release_checks/provenance-$(date -u +%Y%m%dT%H%M%SZ)"
 ```
 
-需要查看相邻的真实训练metrics/启动JSON时，用--record显式补充小文件。工具只读NPZ头/小型元数据、JSON来源字段和weights_only+meta/mmap checkpoint；不打印完整数组，不关闭allow_pickle/weights_only。旧checkpoint无法安全读取时，由所有者从可信来源导出小型来源JSON供--record检查，不在工具中放开pickle。
+Use --record to add explicit small training metrics/launch JSON files. The tool reads NPZ headers/small metadata, JSON source fields and weights_only+meta/mmap checkpoints; it neither prints full arrays nor disables safety restrictions. If safe reading fails, the owner can export a small provenance JSON from a trusted source; do not enable unsafe pickle in this tool.
 
-若字段未保存，结论就是“无法从现有记录确定”。最少人工确认：①论文各折/表格确切采用哪个评估文件；②其base/task/residual与AV/pivot输入的实际路径和hash或不可变run ID；③缺失时确认task/residual拟合输入、pivot实际teacher/anchor及生成记录。不能拿目录名或当前配置补写历史证据。
+If fields were never saved, the conclusion is cannot determine from existing records. Minimum human confirmation: the exact evaluation asset used for each paper fold/table; its actual base/task/residual and AV/pivot paths plus hashes or immutable run IDs; and any missing fitting-input, teacher/anchor or generation records. Do not manufacture history from folder names or current configuration.
 
-## 检查完成后的停止点
+## Verification boundary
 
-本地已经执行一次真实现有资产的文件/配置预检查，模型初始化次数为0，文件stat未变；原有核心Torch验证不重复。服务器真实forward/backward仍由用户运行。源码可审查、完整新用户运行、论文结果复现是不同状态。即使最小真实检查通过，项目自有部分现适用根目录LICENSE，仍需、确认适用第三方NOTICE/限制并核对论文最终来源；不能宣称完整实验已复现。本轮不push、不公开发布，完成交付后停止重复重构/测试。
+The supplied server minimal real check has passed; see VALIDATION.md for the measured scope. Source reviewability, a new-user end-to-end run and paper-result reproduction are separate claims. Even a passing minimal forward/backward does not establish complete training or paper metrics. LICENSE and LICENSE_SCOPE.md define the project grant and exclusions. Historical nested third-party notices and final result provenance remain unresolved.
 
-subject03属于outer01训练侧，使用inner4/job14的cross-fitted physiology；job14是角色任务ID，不是EAV被试14。REFED与EAV编号属于不同命名空间。
+Subject03 is training-side for outer01 and uses inner4/job14 cross-fitted physiology. Job14 is a role ID, not EAV subject14. REFED and EAV subject IDs belong to distinct namespaces.

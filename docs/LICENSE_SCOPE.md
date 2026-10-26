@@ -102,7 +102,7 @@ P identifies implementation traced to an original-project file; N identifies pre
 | `tests/test_report_serialization.py` | N | Curation-added test/example; recorded public preparation work, not a copied upstream file identified in SOURCE_MAP | Only Siyao Yan-authored additions covered; other/unclear authorship excluded |
 
 | `LICENSE` | D | Current project license/documentation | Own original expression only; exclusions retained |
-| `docs/LICENSE_ZH.md` | D | Current project license/documentation | Own original expression only; exclusions retained |
+| `docs/LICENSE_SUMMARY.md` | D | Current project license/documentation | Own original expression only; exclusions retained |
 | `docs/LICENSE_SCOPE.md` | D | Current project license/documentation | Own original expression only; exclusions retained |
 
 ## Patch targets (not separate newly owned source files)

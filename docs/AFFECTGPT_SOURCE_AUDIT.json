@@ -365,5 +365,11 @@
         "historical_nested_revision": "not established"
       }
     ]
+  },
+  "english_only_patch": {
+    "format": "zero-context; git apply --unidiff-zero",
+    "sha256": "e19d9b40a236794ee9f4c1797de2003c9d7a1ff1eeed97192d71248cf7a419e2",
+    "previous_patch_sha256": "f7e609884c01134205d80758699b80fbf918531bc52df35fa53b853580918018",
+    "validation": "Reverse previous patch on four actual modified files; apply new patch with --check then apply; all four resulting files identical. Only unchanged context removed."
   }
 }

@@ -20,4 +20,4 @@ Updated 2026-10-23. Chosen source delivery is **verified fixed upstream plus the
 
 ## Project license boundary
 
-LICENSE applies only to original content authored by Siyao Yan. Third-party, derived and unclear-authorship portions retain their terms or remain excluded as documented in LICENSE_SCOPE.md. The patch is not blanket-relicensed. Existing third-party commercial rights are unchanged. See LICENSE_ZH.md. No custom SPDX identifier is asserted.
+LICENSE applies only to original content authored by Siyao Yan. Third-party, derived and unclear-authorship portions retain their terms or remain excluded as documented in LICENSE_SCOPE.md. The patch is not blanket-relicensed. Existing third-party commercial rights are unchanged. See LICENSE_SUMMARY.md. No custom SPDX identifier is asserted.

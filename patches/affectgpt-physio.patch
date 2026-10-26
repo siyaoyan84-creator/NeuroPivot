@@ -2,28 +2,15 @@ diff --git a/AffectGPT/config.py b/AffectGPT/config.py
 index 0285825..2a662e1 100644
 --- a/AffectGPT/config.py
 +++ b/AffectGPT/config.py
-@@ -121,4 +121,5 @@ DEFAULT_AUDIO_PATCH_TOKEN = '<AudioHere>'
- DEFAULT_FRAME_PATCH_TOKEN = '<FrameHere>'
- DEFAULT_FACE_PATCH_TOKEN  = '<FaceHere>'
- DEFAULT_MULTI_PATCH_TOKEN = '<MultiHere>'
+@@ -123,0 +124,1 @@
 +DEFAULT_PHYSIO_PATCH_TOKEN = '<PhysioHere>'
- IGNORE_INDEX = -100
 diff --git a/AffectGPT/my_affectgpt/conversation/conversation_video.py b/AffectGPT/my_affectgpt/conversation/conversation_video.py
 index debb334..2542ad9 100644
 --- a/AffectGPT/my_affectgpt/conversation/conversation_video.py
 +++ b/AffectGPT/my_affectgpt/conversation/conversation_video.py
-@@ -127,6 +127,7 @@ class Chat:
-         self.num_audio_query_token = model_cfg.num_audio_query_token
-         self.num_multi_query_token = model_cfg.num_multi_query_token
-         self.num_image_query_token = model_cfg.num_image_query_token
+@@ -129,0 +130,1 @@
 +        self.num_physio_query_token = 1
- 
- 
-     def to_token_ids(self, text, max_length):
-@@ -149,6 +150,16 @@ class Chat:
-         prompt = prompt.replace(config.DEFAULT_MULTI_PATCH_TOKEN, replace_token)
-         replace_token = config.DEFAULT_IMAGE_PATCH_TOKEN * self.num_image_query_token
-         prompt = prompt.replace(config.DEFAULT_IMAGE_PATCH_TOKEN, replace_token)
+@@ -151,0 +153,10 @@
 +
 +        replace_token = (
 +            config.DEFAULT_PHYSIO_PATCH_TOKEN
@@ -34,13 +21,7 @@ index debb334..2542ad9 100644
 +            replace_token,
 +        )
 +
-         return prompt
-    
-     def postprocess_audio(self, sample_data):
-@@ -188,6 +199,21 @@ class Chat:
-         return image_hiddens, image_llms
- 
- 
+@@ -190,0 +202,15 @@
 +    def postprocess_physio(self, physio_va):
 +        physio_va = torch.as_tensor(
 +            physio_va,
@@ -56,55 +37,21 @@ index debb334..2542ad9 100644
 +        )
 +
 +
-     def postprocess_multi(self, video_hiddens, audio_hiddens):
-         if video_hiddens is None or audio_hiddens is None:
-             return None, None
-@@ -206,6 +232,7 @@ class Chat:
-         FRAME_PATCH_TOKEN_ID = self.tokenizer.get_vocab()[config.DEFAULT_FRAME_PATCH_TOKEN]
-         FACE_PATCH_TOKEN_ID  = self.tokenizer.get_vocab()[config.DEFAULT_FACE_PATCH_TOKEN]
-         MULTI_PATCH_TOKEN_ID = self.tokenizer.get_vocab()[config.DEFAULT_MULTI_PATCH_TOKEN]
+@@ -208,0 +235,1 @@
 +        PHYSIO_PATCH_TOKEN_ID = self.tokenizer.get_vocab()[config.DEFAULT_PHYSIO_PATCH_TOKEN]
- 
-         ###### step1: => (input_id, attention_mask) 
-         ## replace and add
-@@ -229,6 +256,7 @@ class Chat:
-         temp_input_id[temp_input_id == AUDIO_PATCH_TOKEN_ID] = 0
-         temp_input_id[temp_input_id == MULTI_PATCH_TOKEN_ID] = 0
-         temp_input_id[temp_input_id == IMAGE_PATCH_TOKEN_ID] = 0
+@@ -231,0 +259,1 @@
 +        temp_input_id[temp_input_id == PHYSIO_PATCH_TOKEN_ID] = 0
-         cur_input_embeds = self.model.llama_model.model.model.embed_tokens(temp_input_id)
-         cur_input_ids = input_id
-         
-@@ -239,6 +267,7 @@ class Chat:
-                                                             (AUDIO_PATCH_TOKEN_ID, self.num_audio_query_token, img_list['audio']),
-                                                             (MULTI_PATCH_TOKEN_ID, self.num_multi_query_token, img_list['multi']),
-                                                             (IMAGE_PATCH_TOKEN_ID, self.num_image_query_token, img_list['image']),
+@@ -241,0 +270,1 @@
 +                                                            (PHYSIO_PATCH_TOKEN_ID, self.num_physio_query_token, img_list.get('physio')),
-                                                             ]:
-             if (cur_input_ids == patch_token_id).sum() != 0:
-                 assert embeds is not None, f'Some input info is missing.'
 diff --git a/AffectGPT/my_affectgpt/models/affectgpt.py b/AffectGPT/my_affectgpt/models/affectgpt.py
 index b2b80b7..99a1dbf 100644
 --- a/AffectGPT/my_affectgpt/models/affectgpt.py
 +++ b/AffectGPT/my_affectgpt/models/affectgpt.py
-@@ -77,11 +77,13 @@ class AffectGPT(Blip2Base):
-         DEFAULT_FRAME_PATCH_TOKEN = config.DEFAULT_FRAME_PATCH_TOKEN
-         DEFAULT_FACE_PATCH_TOKEN  = config.DEFAULT_FACE_PATCH_TOKEN
-         DEFAULT_MULTI_PATCH_TOKEN = config.DEFAULT_MULTI_PATCH_TOKEN
+@@ -79,0 +80,1 @@
 +        DEFAULT_PHYSIO_PATCH_TOKEN = config.DEFAULT_PHYSIO_PATCH_TOKEN
-         self.IMAGE_PATCH_TOKEN_ID = self.llama_tokenizer.get_vocab()[DEFAULT_IMAGE_PATCH_TOKEN]
-         self.AUDIO_PATCH_TOKEN_ID = self.llama_tokenizer.get_vocab()[DEFAULT_AUDIO_PATCH_TOKEN]
-         self.FRAME_PATCH_TOKEN_ID = self.llama_tokenizer.get_vocab()[DEFAULT_FRAME_PATCH_TOKEN]
-         self.FACE_PATCH_TOKEN_ID  = self.llama_tokenizer.get_vocab()[DEFAULT_FACE_PATCH_TOKEN]
-         self.MULTI_PATCH_TOKEN_ID = self.llama_tokenizer.get_vocab()[DEFAULT_MULTI_PATCH_TOKEN]
+@@ -84,0 +86,1 @@
 +        self.PHYSIO_PATCH_TOKEN_ID = self.llama_tokenizer.get_vocab()[DEFAULT_PHYSIO_PATCH_TOKEN]
- 
-         if llama_model_name in ['Baichuan2']:
-             self.llama_model = AutoModelForCausalLM.from_pretrained(
-@@ -298,6 +300,77 @@ class AffectGPT(Blip2Base):
-     # ===================================================== #
-     # 为 EVA_CLIP 保留每个图片的 32 tokens
-     # 其他 visual encoder 默认是 1 tokens
+@@ -300,0 +303,71 @@
 +        # =====================================================
 +        # Gate4 physiology branch:
 +        # explicit [Valence, Arousal] -> one Qwen soft token.
@@ -176,13 +123,7 @@ index b2b80b7..99a1dbf 100644
 +            param.requires_grad = True
 +
 +
-     def encode_image_token(self, image, raw_image):
-         device = image.device
-         with self.maybe_autocast():
-@@ -657,6 +730,16 @@ class AffectGPT(Blip2Base):
- 
-         self.face_or_frame = samples['face_or_frame'] # 把这个参数传出来
-         frame_llms, face_llms, audio_llms, image_llms, multi_llms = None, None, None, None, None
+@@ -659,0 +733,10 @@
 +        physio_llms = None
 +
 +        if (
@@ -193,32 +134,13 @@ index b2b80b7..99a1dbf 100644
 +                samples['physio_va']
 +            )
 +
-         if 'frames' in samples: 
-             frame_hiddens, frame_llms = self.encode_video_merge(samples['frames'],  samples['raw_frames']) # frame: [b c t h w] -> [b, 32, 4096]
-         if 'faces'  in samples: 
-@@ -680,6 +763,7 @@ class AffectGPT(Blip2Base):
-         temp_input_ids[temp_input_ids == self.AUDIO_PATCH_TOKEN_ID] = 0
-         temp_input_ids[temp_input_ids == self.MULTI_PATCH_TOKEN_ID] = 0
-         temp_input_ids[temp_input_ids == self.IMAGE_PATCH_TOKEN_ID] = 0
+@@ -682,0 +766,1 @@
 +        temp_input_ids[temp_input_ids == self.PHYSIO_PATCH_TOKEN_ID] = 0
-         temp_input_embedding = self.llama_model.model.model.embed_tokens(temp_input_ids) # 嵌套 LoRA 之后，会在 model 外面再包一层
- 
-         ## replace <ImageHere>; <MultiHere>; <FrameHere>; <FaceHere>; <AudioHere>
-@@ -691,6 +775,7 @@ class AffectGPT(Blip2Base):
-                                                                 (self.AUDIO_PATCH_TOKEN_ID, self.num_audio_query_token, audio_llms),
-                                                                 (self.MULTI_PATCH_TOKEN_ID, self.num_multi_query_token, multi_llms),
-                                                                 (self.IMAGE_PATCH_TOKEN_ID, self.num_image_query_token, image_llms),
+@@ -693,0 +778,1 @@
 +                                                                (self.PHYSIO_PATCH_TOKEN_ID, self.num_physio_query_token, physio_llms),
-                                                                 ]:
-                 if (cur_input_ids == patch_token_id).sum() != 0:
-                     assert embeds is not None, f'Some input info is missing.'
 diff --git a/AffectGPT/my_affectgpt/models/tokenizer.py b/AffectGPT/my_affectgpt/models/tokenizer.py
 index 266738a..4fb72f9 100644
 --- a/AffectGPT/my_affectgpt/models/tokenizer.py
 +++ b/AffectGPT/my_affectgpt/models/tokenizer.py
-@@ -40,4 +40,5 @@ def load_tokenizer_from_LLM(model_name):
-     tokenizer.add_tokens([config.DEFAULT_FRAME_PATCH_TOKEN], special_tokens=True)
-     tokenizer.add_tokens([config.DEFAULT_FACE_PATCH_TOKEN],  special_tokens=True)
-     tokenizer.add_tokens([config.DEFAULT_MULTI_PATCH_TOKEN], special_tokens=True)
+@@ -42,0 +43,1 @@
 +    tokenizer.add_tokens([config.DEFAULT_PHYSIO_PATCH_TOKEN], special_tokens=True)
-     return tokenizer

@@ -1,6 +1,6 @@
 > Current status (2026-10-24): server minimal real initialization, cached-AV scoring and training-side residual backward passed; task-token gradient was disabled. Earlier unexecuted statements below describe the pre-handoff state. See VALIDATION.md for the current verified scope; six historical provenance gaps remain.
 
-# Remaining release evidence / 尚待解决的具体事项
+# Remaining release evidence
 
 Updated 2026-10-23. Private release_evidence files were read in place and not copied here. All 30 grouped summaries and successful Git command statuses are now available. The modified AffectGPT import closure is present, and its four-source-file delta is verified against the official commit and a clean baseline. No entire runtime, model cache or review_metadata directory is requested.
 
@@ -30,4 +30,4 @@ The previous broad Git-record request is closed: root, commit, status and nonemp
 A qualified complete AffectGPT/CUDA environment, real REFED/EAV and valid base/stage weights are still required for end-to-end execution. Existing local weight file headers were checked, but full model loading was not. CPU core software was installed and real tests passed; do not request duplicate model downloads or all old runtime outputs. The custom noncommercial LICENSE applies only to Siyao Yan original content; see LICENSE_SCOPE.md for unresolved portions.
 
 
-For the next server check, follow SERVER_CHECK.md rather than exporting another broad evidence package. Minimum still-needed human confirmation is the identity of each paper-final evaluation asset and its actual checkpoint/cache/run-ID links. A passing real computation check does not establish these historical links. Use the read-only provenance tool first; if fields were never saved, retain the conclusion “无法从现有记录确定”. No runtime-tree transfer is requested.
+For the next server check, follow SERVER_CHECK.md rather than exporting another broad evidence package. Minimum still-needed human confirmation is the identity of each paper-final evaluation asset and its actual checkpoint/cache/run-ID links. A passing real computation check does not establish these historical links. Use the read-only provenance tool first; if fields were never saved, retain the conclusion “cannot determine from existing records”. No runtime-tree transfer is requested.

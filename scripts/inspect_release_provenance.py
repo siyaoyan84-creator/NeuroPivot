@@ -41,8 +41,8 @@ def main():
                         if want is not None and meta.get(key)!=want:item['consistency_warnings'].append(key+' absent/conflicting; do not fill it from the directory name')
                     fold=meta.get('upstream_outer_fold');anchor=meta.get('upstream_refed_anchor_test_subject')
                     if fold in [1,2,3,4,5] and anchor is not None and anchor!=({1:2,2:2,3:2,4:2,5:1}[fold]):item['consistency_warnings'].append('Cache anchor metadata conflicts with supplied bridge summaries; those summaries alone do not identify the final cache/weights used')
-                item['conclusion']='无法从现有记录确定论文最终使用的完整链路；以上只列出该资产实际保存的来源字段'
-            except Exception as exc:item['read_error']=type(exc).__name__+': '+str(exc);item['conclusion']='无法从现有记录确定；未关闭weights_only或allow_pickle安全限制'
+                item['conclusion']='Cannot determine the final paper pipeline from existing records; only source fields actually saved in the supplied asset are listed'
+            except Exception as exc:item['read_error']=type(exc).__name__+': '+str(exc);item['conclusion']='Cannot determine from existing records; weights_only and allow_pickle safety restrictions remain enabled'
             entries.append(item)
     after=snapshot(files)
     result={'status':'READ_ONLY_REPORT','assets_unchanged':before==after,'entries':entries,'paper_chain_verified':False,'namespace_note':'REFED anchor IDs and EAV subject IDs are separate namespaces','minimum_manual_confirmation':['Identify the exact final evaluation file used in each paper table/fold','Supply authentic input checkpoint/cache paths and preferably SHA256 or run IDs for that evaluation','Where absent, confirm task/residual fitted-input/cache identities and actual bridge teacher used; do not invent fields or relabel existing assets']}
