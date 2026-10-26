@@ -1,0 +1,152 @@
+[
+  {
+    "source": "src/models/gate3_eeg_pivot_v2.py",
+    "public": "src/neuropivot/models/eeg.py",
+    "sha256": "fcf4fa3df3409fc5ac99b1ce6dd036f9a58bfe4c0dc28d1a8f8cf6d5a46d5e47"
+  },
+  {
+    "source": "src/models/gate3_eeg_pivot_v3.py",
+    "public": "src/neuropivot/models/ordinal.py",
+    "sha256": "8c820ce59ac6e8962c1ecb14c66fe83513fbc42891eaaf141836efc6e997d555"
+  },
+  {
+    "source": "src/data/schema.py",
+    "public": "src/neuropivot/data/schema.py",
+    "sha256": "2c786a7524f78a6dcd5cf5847e7297cdc7843c4fb491d1e3996746771cd58700"
+  },
+  {
+    "source": "src/data/mat_header.py",
+    "public": "src/neuropivot/data/mat_header.py",
+    "sha256": "9db8b2e60dfb32784111ea858e4e3a64d2f12f64023053ae8cd53987804066a7"
+  },
+  {
+    "source": "src/data/eav_manifest.py",
+    "public": "src/neuropivot/data/eav_manifest.py",
+    "sha256": "8da0dff9b4d64786207f38c03a8bfc828e149826a6375e9d863b5f59db8902e3"
+  },
+  {
+    "source": "src/data/refed_manifest.py",
+    "public": "src/neuropivot/data/refed_manifest.py",
+    "sha256": "f021fe1fe57810402c904cb36912ce6a832f0484cf64e929528d796dad4287f9"
+  },
+  {
+    "source": "src/preprocessing/refed.py",
+    "public": "src/neuropivot/preprocessing/refed.py",
+    "sha256": "1c86ef579c7713c6a864cf429e79d2931cd44691ce6130aff325802e2f3405e5"
+  },
+  {
+    "source": "src/config.py",
+    "public": "src/neuropivot/config.py",
+    "sha256": "3f520d655ff39cbcc4ee89e993e9b0fb7443628de5fc679895205eca9650052e"
+  },
+  {
+    "source": "src/preprocessing/eav.py",
+    "public": "src/neuropivot/preprocessing/eav.py",
+    "sha256": "2449ef345c4a46b764716f2e5c1d27b87f98eb12482ad6c5bf6c47f265fb8347"
+  },
+  {
+    "source": "src/samples/refed.py",
+    "public": "src/neuropivot/samples/refed.py",
+    "sha256": "d3ea2b9b659646bb418ce690e2a5795f045e58063f5107da67a9ca6a3a2f16dc"
+  },
+  {
+    "source": "scripts/run_refed_light_subject.py",
+    "public": "src/neuropivot/data/refed_loader.py",
+    "sha256": "ff2e21eedb70b6397eac06d89047cc951b50fe403de9e838b89f7a49bb279c89"
+  },
+  {
+    "source": "scripts/run_gate3a_refed_target_loso.py",
+    "public": "src/neuropivot/training/refed_source.py",
+    "sha256": "8fbb640a579128e09834ac00f38a4ec65310e13053c18da1cb8113fa9518b681"
+  },
+  {
+    "source": "scripts/build_gate3a_refed_anchor_v4.py",
+    "public": "src/neuropivot/training/refed_anchor.py",
+    "sha256": "9e1bafb56ae3bd5c8a884f8f91be61ec1f098e5836c288939fe520c41c15c5d8"
+  },
+  {
+    "source": "scripts/run_gate3a_anchored_pivot_v4_nested_outer03.py",
+    "public": "src/neuropivot/training/bridge_base.py",
+    "sha256": "67c5e5cbef60930e657819c1e0d62a6bcb642a4ef66c3977939e76550d01d371"
+  },
+  {
+    "source": "scripts/run_gate3a_anchored_pivot_v4_grouped_outer5fold.py",
+    "public": "src/neuropivot/training/protocol.py",
+    "sha256": "32d40f3478692abddb10da57e183b2ff443d0505a0a93dfacee5d91ab5ab784f"
+  },
+  {
+    "source": "scripts/build_gate4_eav_nested_outer03_pivot_cache_v1.py",
+    "public": "src/neuropivot/inference/pivot_cache_base.py",
+    "sha256": "a2c9bb70d0066ae6407cf51d233056215ee1d90528054d473fc2c2a53678efad"
+  },
+  {
+    "source": "scripts/build_gate4_eav_grouped_outer01_pivot_cache_v1.py",
+    "public": "src/neuropivot/inference/export_pivots.py",
+    "sha256": "8f7795d8ba3ac4b541d3671c570f86e240a11b12b0ef7244f1fb457acd108727"
+  },
+  {
+    "source": "scripts/train_gate4_grouped_outer01_three_conditions_label_fix_v1.py",
+    "public": "src/neuropivot/models/residual.py",
+    "sha256": "b21a314cccece9f30ecf683595e20ce5b43bf7dbb21eae1b5104c22a8c0ee036"
+  },
+  {
+    "source": "scripts/train_gate4_affectgpt_physio_residual_v2.py",
+    "public": "src/neuropivot/integrations/affectgpt/affect_plumbing.py",
+    "sha256": "30627363661546cfd497055e18a5abcefd3e6239e71af2a0b935bd9a5b0e0df9"
+  },
+  {
+    "source": "scripts/train_gate4_affectgpt_pivot_residual_v4.py",
+    "public": "src/neuropivot/data/av_physio_data.py",
+    "sha256": "4456de93b3d8bb6847899a3b5fcd1b51d465863a44421392a6ace3ca42f04197"
+  },
+  {
+    "source": "scripts/train_gate4_grouped_outer01_three_conditions_label_fix_v1.py",
+    "public": "src/neuropivot/training/residual.py",
+    "sha256": "b21a314cccece9f30ecf683595e20ce5b43bf7dbb21eae1b5104c22a8c0ee036"
+  },
+  {
+    "source": "scripts/train_gate4_affectgpt_task_adapter_grouped_outer01_label_fix_v1.py",
+    "public": "src/neuropivot/training/task_adapter.py",
+    "sha256": "3649a43f098c9fba442733336d73d90c4654278e0ebf5649024b27ec785fa802"
+  },
+  {
+    "source": "scripts/eval_gate4_grouped_outer01_label_fix_v1.py",
+    "public": "src/neuropivot/inference/evaluator.py",
+    "sha256": "3835f5ac01472def18661d6d4877f3f2c7e0535dac9dabb5689886bd33beccdc"
+  },
+  {
+    "source": "scripts/eval_gate4_grouped_fiveclass_label_fix_v1.py",
+    "public": "src/neuropivot/inference/scoring.py",
+    "sha256": "35894d0fb63bd1799486371cd2af6bd151457ede5afc88c7f5a2e9c8b7e3f13a"
+  },
+  {
+    "source": "scripts/cache_gate4_affectgpt_av_embeddings.py",
+    "public": "src/neuropivot/integrations/affectgpt/cache_av.py",
+    "sha256": "7543c10be74cce2a069425cbea6175b33f09bdaf6cff809c0d6511dbe12ad8dd"
+  },
+  {
+    "source": "scripts/build_manifest.py",
+    "public": "src/neuropivot/data/build_manifest.py",
+    "sha256": "fcec10fb23f24e836053d61fda7c49df7ca76d26492e62bf66f2bc2581aeb729"
+  },
+  {
+    "source": "scripts/build_refed_preprocessed_cache.py",
+    "public": "src/neuropivot/data/preprocess_refed.py",
+    "sha256": "48f76c2df22f3099fdf35ae7edfe8fa1d11939e1052f26bddb635c9889436370"
+  },
+  {
+    "source": "scripts/build_gate3_eav_eeg_cache.py",
+    "public": "src/neuropivot/data/preprocess_eav.py",
+    "sha256": "9cb737c033851093031971be10e6fe6ee2beb21b708385b74d37fddc841c8fd8"
+  },
+  {
+    "source": "scripts/build_refed_sample_registry.py",
+    "public": "src/neuropivot/data/refed_samples.py",
+    "sha256": "eefed901c13c0dbe6ec48b336ca3b25e216b2a9c9e9a1fb9d027e0b18caeeb25"
+  },
+  {
+    "source": "scripts/audit_refed_fnirs_resample_rounding.py",
+    "public": "src/neuropivot/data/refed_rounding.py",
+    "sha256": "926614d73448e2af700b638d933d8238e7c1127684f9a927a888bc39f818e15f"
+  }
+]

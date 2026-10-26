@@ -1,0 +1,32 @@
+-r requirements.txt
+# Additional direct/transitive imports required by the reviewed modified checkout.
+# Observed versions: configs/affectgpt-source-environment.txt; not a certified lockfile.
+accelerate
+decord
+einops
+fairscale
+ftfy
+iopath
+librosa
+omegaconf
+opencv-python
+peft
+Pillow
+pytorchvideo
+sentencepiece
+timm
+torchaudio
+torchvision
+transformers
+webdataset
+soundfile
+regex
+tqdm
+jsonlines
+# Modified AffectGPT remains an external dependency; no official version substitution.
+
+# Imported by the retained external toolkit registration closure.
+fire
+gensim
+matplotlib
+openai

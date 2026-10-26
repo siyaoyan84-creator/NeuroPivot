@@ -1,0 +1,882 @@
+{
+  "manifest": {
+    "module": "neuropivot.data.build_manifest",
+    "args": [
+      [
+        [
+          "--dataset"
+        ],
+        {
+          "required": true,
+          "choices": [
+            "eav",
+            "refed"
+          ],
+          "help": "Dataset to build manifest for"
+        }
+      ],
+      [
+        [
+          "--paths-config"
+        ],
+        {
+          "required": true,
+          "type": "Path",
+          "help": "Path to YAML configuration file"
+        }
+      ]
+    ]
+  },
+  "refed-rounding": {
+    "module": "neuropivot.data.refed_rounding",
+    "args": []
+  },
+  "refed-samples": {
+    "module": "neuropivot.data.refed_samples",
+    "args": [
+      [
+        [
+          "--paths-config"
+        ],
+        {
+          "required": true,
+          "type": "Path"
+        }
+      ]
+    ]
+  },
+  "preprocess-refed": {
+    "module": "neuropivot.data.preprocess_refed",
+    "args": [
+      [
+        [
+          "--paths-config"
+        ],
+        {
+          "required": true,
+          "type": "Path"
+        }
+      ],
+      [
+        [
+          "--subjects"
+        ],
+        {
+          "nargs": "*",
+          "type": "int",
+          "default": null
+        }
+      ]
+    ]
+  },
+  "preprocess-eav": {
+    "module": "neuropivot.data.preprocess_eav",
+    "args": [
+      [
+        [
+          "--paths-config"
+        ],
+        {
+          "type": "Path",
+          "required": true
+        }
+      ],
+      [
+        [
+          "--subjects"
+        ],
+        {
+          "type": "int",
+          "nargs": "+",
+          "default": null
+        }
+      ]
+    ]
+  },
+  "trial-metadata": {
+    "module": "neuropivot.data.trial_metadata",
+    "args": [
+      [
+        [
+          "--paths-config"
+        ],
+        {
+          "type": "Path",
+          "required": true
+        }
+      ]
+    ]
+  },
+  "train-refed": {
+    "module": "neuropivot.training.refed_source",
+    "args": [
+      [
+        [
+          "--paths-config"
+        ],
+        {
+          "type": "Path",
+          "required": true
+        }
+      ],
+      [
+        [
+          "--mode"
+        ],
+        {
+          "choices": [
+            "separate"
+          ],
+          "required": true
+        }
+      ],
+      [
+        [
+          "--refed-test-subject"
+        ],
+        {
+          "type": "int",
+          "required": true
+        }
+      ],
+      [
+        [
+          "--seed"
+        ],
+        {
+          "type": "int",
+          "default": 42
+        }
+      ],
+      [
+        [
+          "--epochs"
+        ],
+        {
+          "type": "int",
+          "default": 20
+        }
+      ],
+      [
+        [
+          "--patience"
+        ],
+        {
+          "type": "int",
+          "default": 5
+        }
+      ],
+      [
+        [
+          "--batch-size"
+        ],
+        {
+          "type": "int",
+          "default": 128
+        }
+      ],
+      [
+        [
+          "--lr"
+        ],
+        {
+          "type": "float",
+          "default": 0.001
+        }
+      ],
+      [
+        [
+          "--weight-decay"
+        ],
+        {
+          "type": "float",
+          "default": 0.0001
+        }
+      ],
+      [
+        [
+          "--lambda-semantic"
+        ],
+        {
+          "type": "float",
+          "default": 0.25
+        }
+      ],
+      [
+        [
+          "--prototype-sigma"
+        ],
+        {
+          "type": "float",
+          "default": 0.15
+        }
+      ],
+      [
+        [
+          "--max-steps-per-epoch"
+        ],
+        {
+          "type": "int",
+          "default": 0
+        }
+      ],
+      [
+        [
+          "--run-tag"
+        ],
+        {
+          "type": "str",
+          "default": "main"
+        }
+      ]
+    ]
+  },
+  "export-refed-anchor": {
+    "module": "neuropivot.training.refed_anchor",
+    "args": [
+      [
+        [
+          "--paths-config"
+        ],
+        {
+          "type": "Path",
+          "required": true
+        }
+      ],
+      [
+        [
+          "--refed-test-subject"
+        ],
+        {
+          "type": "int",
+          "required": true
+        }
+      ],
+      [
+        [
+          "--seed"
+        ],
+        {
+          "type": "int",
+          "default": 42
+        }
+      ],
+      [
+        [
+          "--batch-size"
+        ],
+        {
+          "type": "int",
+          "default": 256
+        }
+      ]
+    ]
+  },
+  "bridge": {
+    "module": "neuropivot.training.protocol",
+    "args": [
+      [
+        [
+          "--outer-fold"
+        ],
+        {
+          "type": "int",
+          "choices": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "required": true
+        }
+      ],
+      [
+        [
+          "--split-role"
+        ],
+        {
+          "choices": [
+            "outer",
+            "inner1",
+            "inner2",
+            "inner3",
+            "inner4",
+            "inner5"
+          ],
+          "required": true
+        }
+      ],
+      [
+        [
+          "--preflight-only"
+        ],
+        {
+          "action": "store_true"
+        }
+      ],
+      [
+        [
+          "--paths-config"
+        ],
+        {
+          "type": "Path",
+          "required": true
+        }
+      ],
+      [
+        [
+          "--mode"
+        ],
+        {
+          "choices": [
+            "ordinal_correct"
+          ],
+          "required": true
+        }
+      ],
+      [
+        [
+          "--refed-anchor-test-subject"
+        ],
+        {
+          "type": "int",
+          "required": true
+        }
+      ],
+      [
+        [
+          "--seed"
+        ],
+        {
+          "type": "int",
+          "default": 42
+        }
+      ],
+      [
+        [
+          "--epochs"
+        ],
+        {
+          "type": "int",
+          "default": 20
+        }
+      ],
+      [
+        [
+          "--patience"
+        ],
+        {
+          "type": "int",
+          "default": 5
+        }
+      ],
+      [
+        [
+          "--batch-size"
+        ],
+        {
+          "type": "int",
+          "default": 128
+        }
+      ],
+      [
+        [
+          "--lr"
+        ],
+        {
+          "type": "float",
+          "default": 0.001
+        }
+      ],
+      [
+        [
+          "--weight-decay"
+        ],
+        {
+          "type": "float",
+          "default": 0.0001
+        }
+      ],
+      [
+        [
+          "--lambda-ordinal"
+        ],
+        {
+          "type": "float",
+          "default": 0.25
+        }
+      ],
+      [
+        [
+          "--ordinal-margin"
+        ],
+        {
+          "type": "float",
+          "default": 0.05
+        }
+      ],
+      [
+        [
+          "--retrieval-k"
+        ],
+        {
+          "type": "int",
+          "default": 25
+        }
+      ],
+      [
+        [
+          "--max-steps-per-epoch"
+        ],
+        {
+          "type": "int",
+          "default": 0
+        }
+      ]
+    ]
+  },
+  "export-pivots": {
+    "module": "neuropivot.inference.export_pivots",
+    "args": [
+      [
+        [
+          "--outer-fold"
+        ],
+        {
+          "type": "int",
+          "choices": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "required": true
+        }
+      ],
+      [
+        [
+          "--paths-config"
+        ],
+        {
+          "type": "Path",
+          "required": true
+        }
+      ],
+      [
+        [
+          "--subjects"
+        ],
+        {
+          "default": "3-42"
+        }
+      ],
+      [
+        [
+          "--seed"
+        ],
+        {
+          "type": "int",
+          "default": 42
+        }
+      ],
+      [
+        [
+          "--batch-size"
+        ],
+        {
+          "type": "int",
+          "default": 256
+        }
+      ],
+      [
+        [
+          "--overwrite"
+        ],
+        {
+          "action": "store_true"
+        }
+      ],
+      [
+        [
+          "--audit-only"
+        ],
+        {
+          "action": "store_true"
+        }
+      ],
+      [
+        [
+          "--refed-anchor-test-subject"
+        ],
+        {
+          "type": "int",
+          "choices": [
+            1,
+            2
+          ],
+          "required": true
+        }
+      ]
+    ]
+  },
+  "cache-av": {
+    "module": "neuropivot.integrations.affectgpt.cache_av",
+    "args": [
+      [
+        [
+          "--cfg-path"
+        ],
+        {
+          "required": true
+        }
+      ],
+      [
+        [
+          "--options"
+        ],
+        {
+          "nargs": "+",
+          "default": [
+            "inference.test_epoch=30",
+            "inference.gpu=0"
+          ]
+        }
+      ],
+      [
+        [
+          "--checkpoint"
+        ],
+        {
+          "required": true
+        }
+      ],
+      [
+        [
+          "--subjects"
+        ],
+        {
+          "default": "2-42"
+        }
+      ],
+      [
+        [
+          "--max-trials"
+        ],
+        {
+          "type": "int",
+          "default": null
+        }
+      ],
+      [
+        [
+          "--overwrite"
+        ],
+        {
+          "action": "store_true"
+        }
+      ]
+    ]
+  },
+  "train-task": {
+    "module": "neuropivot.training.task_adapter",
+    "args": [
+      [
+        [
+          "--outer-fold"
+        ],
+        {
+          "type": "int",
+          "choices": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "required": true
+        }
+      ],
+      [
+        [
+          "--cfg-path"
+        ],
+        {
+          "required": true
+        }
+      ],
+      [
+        [
+          "--options"
+        ],
+        {
+          "nargs": "+",
+          "default": [
+            "inference.test_epoch=30",
+            "inference.gpu=0"
+          ]
+        }
+      ],
+      [
+        [
+          "--checkpoint"
+        ],
+        {
+          "required": true
+        }
+      ],
+      [
+        [
+          "--epochs"
+        ],
+        {
+          "type": "int",
+          "default": 3
+        }
+      ],
+      [
+        [
+          "--batch-size"
+        ],
+        {
+          "type": "int",
+          "default": 2
+        }
+      ],
+      [
+        [
+          "--grad-accum"
+        ],
+        {
+          "type": "int",
+          "default": 8
+        }
+      ],
+      [
+        [
+          "--lr"
+        ],
+        {
+          "type": "float",
+          "default": 0.001
+        }
+      ],
+      [
+        [
+          "--seed"
+        ],
+        {
+          "type": "int",
+          "default": 42
+        }
+      ]
+    ]
+  },
+  "train-residual": {
+    "module": "neuropivot.training.residual",
+    "args": [
+      [
+        [
+          "--outer-fold"
+        ],
+        {
+          "type": "int",
+          "choices": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "required": true
+        }
+      ],
+      [
+        [
+          "--cfg-path"
+        ],
+        {
+          "required": true
+        }
+      ],
+      [
+        [
+          "--options"
+        ],
+        {
+          "nargs": "+",
+          "default": [
+            "inference.test_epoch=30",
+            "inference.gpu=0"
+          ]
+        }
+      ],
+      [
+        [
+          "--checkpoint"
+        ],
+        {
+          "required": true
+        }
+      ],
+      [
+        [
+          "--epochs"
+        ],
+        {
+          "type": "int",
+          "default": 3
+        }
+      ],
+      [
+        [
+          "--batch-size"
+        ],
+        {
+          "type": "int",
+          "default": 2
+        }
+      ],
+      [
+        [
+          "--grad-accum"
+        ],
+        {
+          "type": "int",
+          "default": 8
+        }
+      ],
+      [
+        [
+          "--lr"
+        ],
+        {
+          "type": "float",
+          "default": 0.0001
+        }
+      ],
+      [
+        [
+          "--seed"
+        ],
+        {
+          "type": "int",
+          "default": 42
+        }
+      ],
+      [
+        [
+          "--max-steps-per-epoch"
+        ],
+        {
+          "type": "int",
+          "default": 0
+        }
+      ],
+      [
+        [
+          "--run-tag"
+        ],
+        {
+          "default": ""
+        }
+      ],
+      [
+        [
+          "--overwrite"
+        ],
+        {
+          "action": "store_true"
+        }
+      ]
+    ]
+  },
+  "predict": {
+    "module": "neuropivot.inference.predict",
+    "args": [
+      [
+        [
+          "--outer-fold"
+        ],
+        {
+          "type": "int",
+          "choices": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "required": true
+        }
+      ],
+      [
+        [
+          "--cfg-path"
+        ],
+        {
+          "required": true
+        }
+      ],
+      [
+        [
+          "--checkpoint"
+        ],
+        {
+          "required": true
+        }
+      ],
+      [
+        [
+          "--options"
+        ],
+        {
+          "nargs": "+",
+          "default": [
+            "inference.test_epoch=30",
+            "inference.gpu=0"
+          ]
+        }
+      ],
+      [
+        [
+          "--output"
+        ],
+        {
+          "type": "Path",
+          "required": true
+        }
+      ]
+    ]
+  },
+  "inspect-affectgpt": {
+    "module": "neuropivot.integrations.affectgpt.inspect",
+    "args": [
+      [
+        [
+          "--source"
+        ],
+        {
+          "type": "Path"
+        }
+      ],
+      [
+        [
+          "--model-root"
+        ],
+        {
+          "type": "Path"
+        }
+      ],
+      [
+        [
+          "--output"
+        ],
+        {
+          "type": "Path"
+        }
+      ]
+    ]
+  }
+}

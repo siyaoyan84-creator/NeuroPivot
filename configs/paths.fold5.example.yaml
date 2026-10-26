@@ -1,0 +1,13 @@
+# Paths are resolved from the current launch directory. Keep outputs aligned with --work-dir.
+data:
+  eav_root: data/EAV
+  refed_root: data/REFED
+outputs:
+  manifest_dir: work_fold5/manifests
+  split_dir: work_fold5/splits
+  audit_dir: work_fold5/audits
+  prediction_dir: work_fold5/predictions
+  checkpoint_dir: work_fold5/checkpoints
+  log_dir: work_fold5/logs
+  feature_dir: work_fold5/features
+  cache_dir: work_fold5/cache

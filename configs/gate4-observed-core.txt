@@ -1,0 +1,9 @@
+# Recorded gate4 runtime: Python 3.10.20, torch 2.5.1+cu121; not a complete AffectGPT environment.
+h5py==3.11.0
+mne==1.7.1
+numpy==1.26.4
+pandas==1.5.3
+PyYAML==6.0.2
+scikit-learn==1.5.2
+scipy==1.14.1
+torch==2.5.1+cu121

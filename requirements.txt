@@ -1,0 +1,10 @@
+# Core runtime; no confirmed combined runtime lockfile; observed snapshots are in configs/.
+# Versions must be qualified on the target platform; do not treat these as a lockfile.
+numpy
+pandas
+scipy
+scikit-learn
+torch
+PyYAML
+mne
+h5py

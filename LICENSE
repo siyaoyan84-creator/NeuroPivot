@@ -1,0 +1,65 @@
+NeuroPivot Noncommercial Software License 1.0
+
+Copyright (c) 2026 Siyao Yan.
+Commercial authorization: dangjisheng@lzu.edu.cn
+Issued 2026-10-26 for NeuroPivot 0.1.0.
+
+This custom noncommercial software license is not an OSI-approved open-source license. No free commercial evaluation, free commercial service or other commercial exemption is granted. Third-party terms remain separate.
+
+## 1. Covered Software and scope
+
+“Licensor” means the identified copyright holder(s), or their duly authorized representative, only to the extent they have authority to grant the relevant rights. “You” includes a person or entity exercising rights under this license.
+
+“Covered Software” means only original NeuroPivot software and original modifications authored by Siyao Yan, within the limits identified in docs/LICENSE_SCOPE.md. File location alone does not establish authorship or licensing authority. Unresolved authorship is excluded from this grant, as identified in docs/LICENSE_SCOPE.md; technical provenance alone does not establish whole-file ownership.
+
+Third-party software, copied or derived portions, third-party portions of patches, datasets, model weights and other separately licensed material are excluded. Existing third-party notices, applicable upstream terms and obligations continue to apply. Original contributions to a third-party-derived file or patch may be covered only where the Licensor has authority and the applicable upstream terms permit that treatment, with the portions and terms explicitly identified. This license does not replace or restrict rights granted directly by third-party owners. Combining materials does not relicense them as a single work under this license. If necessary permissions or compatibility cannot be established, this license supplies no missing permission.
+
+## 2. Noncommercial and Commercial Use
+
+“Noncommercial Use” means use whose primary purpose and actual function are education, learning, reproducibility, independent scientific investigation, or dissemination of knowledge, without being part of Commercial Use below. Salary, a user's legal form, ordinary academic tuition, and the mere presence or absence of a fee are not individually determinative. Labels such as “research”, “nonprofit”, “pilot” or “free” do not override the actual function, contractual obligations and intended beneficiaries.
+
+“Commercial Use” means any use of Covered Software, including modifications, to:
+
+(a) develop, evaluate for adoption, integrate, operate, market, sell, license or provide a commercial product or service, including a free feature supporting a commercial offering;
+(b) provide a paid deployment, managed service, customer implementation or consulting deliverable using the software; payment solely for research dissemination or cost recovery is addressed separately below and is not automatically a commercial deployment;
+(c) perform an organization's operational business functions, such as production decisions, employee/customer analytics, revenue operations or internal business automation, even where the software is not sold or exposed to customers;
+(d) carry out commissioned research primarily intended to satisfy a customer's business, product or proprietary operational objective, including a paid proprietary feasibility study, exclusive customer deliverable or product-development contract; or
+(e) use the software in a workflow to create or improve a model, feature, report or other deliverable primarily for any of the commercial purposes in (a)–(d).
+
+Independent academic research and reproducibility for knowledge dissemination are Noncommercial Use when they do not serve those commercial functions. A company-employed researcher can qualify under that test; a university or nonprofit carrying out commercial commissioned work may not. Funding alone does not determine the result. Mixed-purpose use qualifies as Noncommercial Use only for a genuinely separable noncommercial activity; the commercial activity requires authorization. No permission is implied for unresolved mixed-purpose cases.
+
+A later commercial deployment or commercial development activity using Covered Software requires prior written authorization even if an earlier independent research activity was noncommercial. This clause does not assert copyright in abstract ideas, algorithms, facts, published scientific findings, or independently created implementations. It does not automatically impose this license on every output merely because software was used to produce it. Separate rights in datasets, weights or other outputs must be assessed under their own terms; the commercial workflow restriction above governs use of Covered Software itself.
+
+## 3. Permission
+
+Subject to this license, the Licensor grants You a worldwide, royalty-free, nonexclusive copyright license for Noncommercial Use to run, reproduce, study, modify and prepare derivative versions of the Covered Software, and to redistribute its original or modified source or executable forms under section 4. Rights not expressly granted are reserved. This permission covers only rights the Licensor can grant, not third-party rights, trademark endorsement or a separate express patent license. No right is granted to bypass access controls, data permissions or model-license restrictions.
+
+Commercial Use requires a separate written authorization **before** that use begins, issued by the Licensor or an expressly authorized representative. Silence, public availability, issue responses, academic coauthorship and access to a repository are not commercial authorization. A separate authorization must identify its parties, covered software and permitted commercial scope; it does not license third-party material on its owners' behalf.
+
+## 4. Redistribution and modifications
+
+Redistribution must itself be Noncommercial Use and must:
+
+(a) retain applicable copyright, attribution, license and other required notices;
+(b) include this license with the Covered Software and clearly communicate its Noncommercial Use limitation and the need for separate written commercial authorization;
+(c) identify that modifications were made, and their author and date where known, without falsely attributing them to or implying endorsement by the Licensor;
+(d) provide recipients the same permissions and restrictions for the Covered Software and its covered derivative portions, without replacing them with a permissive license or granting commercial rights You do not hold; and
+(e) for executable redistribution, include the notices in accompanying documentation and make the corresponding modified Covered Software source available to the same recipients under these terms.
+
+Recipients receive their Covered Software rights from the Licensor under these terms. You cannot authorize Commercial Use on behalf of the Licensor. Your genuinely independent, separable material may have its own terms; no such terms may remove the restrictions on Covered Software. Third-party terms remain separate, and this section does not purport to impose new restrictions on those owners' material.
+
+## 5. Termination
+
+Rights under this license terminate upon breach. Cease the unpermitted activity and distribution. For a first breach that is capable of cure, rights are reinstated if fully cured within 30 days of Your discovery or written notice, whichever occurs first, unless the Licensor has notified You of deliberate or repeated violations; other reinstatement requires writing. Reinstatement does not retroactively authorize Commercial Use or waive accrued claims. Compliant recipients' existing rights are not terminated solely by an upstream distributor's breach. Disclaimers, third-party exclusions and accrued obligations survive termination.
+
+## 6. Disclaimer and liability
+
+TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, COVERED SOFTWARE IS PROVIDED “AS IS” AND “AS AVAILABLE”, WITHOUT WARRANTY OF ANY KIND, EXPRESS, IMPLIED OR STATUTORY, INCLUDING MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, NON-INFRINGEMENT, ACCURACY, SECURITY OR FITNESS OF RESEARCH RESULTS. YOU ARE RESPONSIBLE FOR TESTING, LAWFUL USE AND NECESSARY THIRD-PARTY PERMISSIONS. NO PERFORMANCE OR REPRODUCIBILITY RESULT IS WARRANTED.
+
+TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, THE LICENSOR AND COVERED CONTRIBUTORS ARE NOT LIABLE FOR INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL OR PUNITIVE DAMAGES, LOSS OF PROFITS, DATA OR BUSINESS, OR OTHER LOSS ARISING FROM THE SOFTWARE OR ITS USE, UNDER ANY THEORY OF LIABILITY, EVEN IF ADVISED OF THE POSSIBILITY. NOTHING EXCLUDES LIABILITY THAT CANNOT LAWFULLY BE EXCLUDED OR RESTRICTS MANDATORY STATUTORY RIGHTS.
+
+## 7. Existing rights and interpretation
+
+This license does not withdraw or narrow rights validly obtained under an earlier license for the earlier material/version. Later releases or newly owned contributions may have different terms only to the extent legally permitted. No assertion is made that publishing a new license retroactively cancels a prior grant.
+
+Statutory exceptions and mandatory rights are unaffected. A provision invalid under applicable law is ineffective only to that extent; remaining provisions continue where legally possible. No governing law, venue, dispute-resolution obligation or additional patent covenant is specified by this license. English is the controlling text; the Chinese explanation is an aid, not a second operative license.

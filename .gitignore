@@ -1,0 +1,36 @@
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+build/
+dist/
+work/
+runtime/
+third_party/
+/data/
+*.npz
+*.npy
+*.mat
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.log
+.env
+.env.*
+*.pem
+*.key
+
+*.local.json
+
+# Prepared external dependencies and the separate evidenced fold5 workspace.
+external/
+work_*/
+
+release_checks/
+server_delivery/
+
+# Private server feedback and evidence must never enter a release.
+server_check_pass*/
+server_check_pass*
+release_evidence*

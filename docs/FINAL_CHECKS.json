@@ -1,0 +1,252 @@
+{
+  "date": "2026-10-23",
+  "core_real_torch": {
+    "python": "3.12.14",
+    "torch": "2.5.1+cpu",
+    "device": "cpu",
+    "skipped": 0,
+    "original_comparison": true,
+    "eeg": {
+      "refed": {
+        "va": [
+          2,
+          2
+        ],
+        "latent": [
+          2,
+          64
+        ],
+        "pivot": [
+          2,
+          66
+        ],
+        "checkpoint_max_abs_error": 0.0,
+        "original_max_abs_error": {
+          "base": 0.0,
+          "shared": 0.0,
+          "va_pred": 0.0,
+          "proto_logits": 0.0
+        }
+      },
+      "eav": {
+        "va": [
+          2,
+          2
+        ],
+        "latent": [
+          2,
+          64
+        ],
+        "pivot": [
+          2,
+          66
+        ],
+        "checkpoint_max_abs_error": 0.0,
+        "original_max_abs_error": {
+          "base": 0.0,
+          "shared": 0.0,
+          "class_logits": 0.0,
+          "va_pred": 0.0,
+          "proto_logits": 0.0
+        }
+      }
+    },
+    "normalization_max_abs_error": 0.0,
+    "residual": {
+      "trainable_parameters": 467200,
+      "grad_norms": {
+        "fc1.weight": 0.01409084815531969,
+        "fc2.weight": 0.1464817225933075
+      },
+      "frozen_eeg_parameters_with_grad": 0,
+      "frozen_av_grad": false,
+      "frozen_task_grad": false,
+      "nonzero_delta_norm": 6.846418380737305,
+      "addition_max_abs_error": 0.0,
+      "checkpoint_max_abs_error": 0.0,
+      "original_max_abs_error": 0.0
+    },
+    "affectgpt_imported": false,
+    "status": "PASS"
+  },
+  "independent_install": {
+    "python": "3.12.14",
+    "torch": "2.5.1+cpu",
+    "device": "cpu",
+    "skipped": 0,
+    "original_comparison": false,
+    "eeg": {
+      "refed": {
+        "va": [
+          2,
+          2
+        ],
+        "latent": [
+          2,
+          64
+        ],
+        "pivot": [
+          2,
+          66
+        ],
+        "checkpoint_max_abs_error": 0.0
+      },
+      "eav": {
+        "va": [
+          2,
+          2
+        ],
+        "latent": [
+          2,
+          64
+        ],
+        "pivot": [
+          2,
+          66
+        ],
+        "checkpoint_max_abs_error": 0.0
+      }
+    },
+    "normalization_max_abs_error": 0.0,
+    "residual": {
+      "trainable_parameters": 467200,
+      "grad_norms": {
+        "fc1.weight": 0.016498371958732605,
+        "fc2.weight": 0.13836336135864258
+      },
+      "frozen_eeg_parameters_with_grad": 0,
+      "frozen_av_grad": false,
+      "frozen_task_grad": false,
+      "nonzero_delta_norm": 8.031882286071777,
+      "addition_max_abs_error": 0.0,
+      "checkpoint_max_abs_error": 0.0
+    },
+    "affectgpt_imported": false,
+    "status": "PASS",
+    "noneditable_install": true,
+    "original_project_on_sys_path": false,
+    "external_affectgpt_implicit_discovery": false,
+    "installation_scope": "core API with installed minimal check dependencies; full data/AffectGPT extras not qualified"
+  },
+  "existing_test_suite": {
+    "tests": 11,
+    "passed": 11,
+    "skipped": 0,
+    "seconds": 40.304
+  },
+  "weight_structural_checks": {
+    "Qwen_index_tensor_count": 339,
+    "Qwen_shards": 4,
+    "Qwen_index_to_header_mapping_matches": true,
+    "Qwen_tensor_bounds_valid": true,
+    "CLIP_safetensors_header_bounds_valid": true,
+    "foundation_files_are_lfs_pointers": false,
+    "base_checkpoint_zip_crc": "PASS",
+    "base_checkpoint_has_model_key": true,
+    "pickle_executed": false,
+    "tensor_values_or_model_function_qualified": false,
+    "cuda_available": false,
+    "free_ram_at_inspection_gib": 13.95
+  },
+  "full_affectgpt_initialization_run": false,
+  "full_affectgpt_forward_backward_run": false,
+  "full_data_pipeline_run": false,
+  "paper_results_reproduced": false,
+  "source_patch_clean_baseline_check": "PASS, all61 files match",
+  "network_git_fetch_qualified": false,
+  "anchor_evidence": {
+    "summary_count": 30,
+    "folds_1_to_4": {
+      "jobs": 24,
+      "refed_anchor_test_subject": 2
+    },
+    "fold5": {
+      "jobs": 6,
+      "refed_anchor_test_subject": 1
+    },
+    "seed": 42,
+    "mode": "ordinal_correct",
+    "single_uniform_anchor_confirmed": false,
+    "actual_source_checkpoint_paths_recorded": 0,
+    "actual_anchor_paths_recorded": 0,
+    "split_mismatches": 0
+  },
+  "code_pushed_or_published": false,
+  "final_sweep": {
+    "syntax_files": 59,
+    "help_subcommands": 15,
+    "new_script_help": "PASS",
+    "readme_cli_commands": 19,
+    "all30_summary_split_fields_match": true,
+    "recorded_additional_params": {
+      "lambda_ordinal": 0.25,
+      "ordinal_margin": 0.05,
+      "retrieval_k": 25
+    },
+    "evidence_matched_plans": "PASS",
+    "original_source_fingerprints_unchanged": 30,
+    "external_source_fingerprints_unchanged": 61,
+    "forbidden_artifacts": [],
+    "private_path_hits": []
+  },
+  "server_handoff": {
+    "source_preparation_complete": true,
+    "real_gpu_run_here": false,
+    "local_real_asset_preflight": {
+      "status": "PASS",
+      "model_initializations": 0,
+      "existing_asset_stat_unchanged": true,
+      "provenance_unknown_count": 6,
+      "eval_subject": 14,
+      "gradient_subject": 3,
+      "gradient_role": "inner4",
+      "gradient_job": 14
+    },
+    "local_provenance_read": {
+      "entries": 5,
+      "read_errors": 0,
+      "assets_unchanged": true,
+      "final_paper_chain_verified": false
+    },
+    "server_check_modes": [
+      "preflight",
+      "frozen",
+      "gradient",
+      "both"
+    ],
+    "optimizer_steps": 0,
+    "statistics_fitted": false,
+    "archive_relative_path": "server_delivery/NeuroPivot-server-check-20261023.tar.gz",
+    "bounded_entry_checks": {
+      "syntax_help": "PASS",
+      "outer_test_gradient_rejected_before_file_read": true,
+      "fold1_eval_subject": 14,
+      "fold1_gradient_subject": 3,
+      "fold1_gradient_role": "inner4",
+      "fold1_gradient_job": 14,
+      "entry_optimizer_step_or_checkpoint_save_calls": 0,
+      "unsafe_weights_only_false_calls": 0,
+      "bash_syntax": "not available locally",
+      "readme_cli_commands_parsed": 9,
+      "original_source_fingerprints_unchanged": 30,
+      "external_source_fingerprints_unchanged": 61
+    }
+  },
+  "server_minimal_real_check": {
+    "reviewed_on": "2026-10-24",
+    "status": "PASS; internal fields checked",
+    "mode": "both",
+    "model_initializations": 1,
+    "frozen_trials": 2,
+    "gradient_trials": 1,
+    "task_gradient_enabled": false,
+    "frozen_model_parameters_with_grad": 0,
+    "asset_stat_unchanged": true,
+    "optimizer_steps": 0,
+    "historical_provenance_unknown_count": 6,
+    "raw_media_encoding_verified": false,
+    "full_training_verified": false,
+    "paper_results_reproduced": false,
+    "details": "VALIDATION.md"
+  }
+}

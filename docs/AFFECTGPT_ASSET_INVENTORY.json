@@ -1,0 +1,82 @@
+{
+  "Qwen2.5-7B-Instruct": {
+    "config": {
+      "architectures": [
+        "Qwen2ForCausalLM"
+      ],
+      "model_type": "qwen2",
+      "hidden_size": 3584,
+      "vocab_size": 152064,
+      "num_hidden_layers": 28,
+      "num_attention_heads": 28
+    },
+    "weights": [
+      {
+        "name": "model-00001-of-00004.safetensors",
+        "bytes": 3945441440
+      },
+      {
+        "name": "model-00002-of-00004.safetensors",
+        "bytes": 3864726352
+      },
+      {
+        "name": "model-00003-of-00004.safetensors",
+        "bytes": 3864726424
+      },
+      {
+        "name": "model-00004-of-00004.safetensors",
+        "bytes": 3556377672
+      }
+    ]
+  },
+  "clip-vit-large-patch14": {
+    "config": {
+      "architectures": [
+        "CLIPModel"
+      ],
+      "model_type": "clip"
+    },
+    "weights": [
+      {
+        "name": "model.safetensors",
+        "bytes": 1710540580
+      },
+      {
+        "name": "pytorch_model.bin",
+        "bytes": 1710671599
+      }
+    ]
+  },
+  "chinese-hubert-large": {
+    "config": {
+      "architectures": [
+        "HubertModel"
+      ],
+      "model_type": "hubert",
+      "hidden_size": 1024,
+      "vocab_size": 32,
+      "num_hidden_layers": 24,
+      "num_attention_heads": 16
+    },
+    "weights": [
+      {
+        "name": "pytorch_model.bin",
+        "bytes": 1261871939
+      }
+    ]
+  },
+  "release_structural_checks_20261023": {
+    "Qwen_index_tensor_count": 339,
+    "Qwen_shards": 4,
+    "Qwen_index_to_header_mapping_matches": true,
+    "Qwen_tensor_bounds_valid": true,
+    "CLIP_safetensors_header_bounds_valid": true,
+    "foundation_files_are_lfs_pointers": false,
+    "base_checkpoint_zip_crc": "PASS",
+    "base_checkpoint_has_model_key": true,
+    "pickle_executed": false,
+    "tensor_values_or_model_function_qualified": false,
+    "cuda_available": false,
+    "free_ram_at_inspection_gib": 13.95
+  }
+}
